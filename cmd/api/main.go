@@ -40,8 +40,16 @@ func main() {
 		"GET /api/v1/customers/{id}",
 		customer.GetCustomerHandler(pool),
 	)
+	mux.HandleFunc(
+		"GET /api/v1/Customers",
+		customer.GetCustomersHandler(pool),
+	)
+	mux.HandleFunc(
+		"POST /api/v1/Customers",
+		customer.CreateCustomerHandler(pool),
+	)
 
-	// Start HTTP server
+	// Start HTTP serve
 	log.Println("Server running on :8080")
 
 	err = http.ListenAndServe(":8080", mux)
